@@ -315,6 +315,24 @@
             glowElement.style.left = `${e.pageX}px`;
             glowElement.style.top = `${e.pageY}px`;
         });
+
+        let lastScrollY = window.scrollY;
+        const nav = document.querySelector('.portfolio-nav');
+        const scrollThreshold = 80;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY <= scrollThreshold) {
+                nav.classList.remove('nav-hidden');
+            } else if (currentScrollY > lastScrollY) {
+                nav.classList.add('nav-hidden');
+            } else {
+                nav.classList.remove('nav-hidden');
+            }
+
+            lastScrollY = currentScrollY;
+        });
     </script>
     <script src="assets/animation.js"></script>
     <script src="assets/graph.js"></script>
