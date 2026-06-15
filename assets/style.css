@@ -591,12 +591,6 @@ body {
   transition: transform 0.3s ease;
 }
 
-.modal-close-btn:hover {
-  background: rgba(0, 240, 255, 0.1);
-  color: var(--cyan);
-  transform: rotate(90deg);
-}
-
 .modal-body-content::-webkit-viewport-text,
 .modal-body-content::-webkit-scrollbar-thumb {
   background: var(--cyan);
@@ -619,6 +613,12 @@ body {
 
 .modal-body-content::-webkit-scrollbar-track {
   background: transparent;
+}
+
+.modal-close-btn:hover {
+  background: rgba(0, 240, 255, 0.1);
+  color: var(--cyan);
+  transform: rotate(90deg);
 }
 
 .modal-close-btn {

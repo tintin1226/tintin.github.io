@@ -8,12 +8,21 @@ const PINK_THEME = {
 const FIELD_ORDER = ['ml', 'gamedev', 'web', 'desktop', 'design', 'security'];
 
 const FIELD_LABELS = {
-  ml: 'ML / AI',
-  gamedev: 'Game Dev',
-  web: 'Web / Full Stack',
-  desktop: 'Desktop / Software',
-  design: 'Design',
-  security: 'Security / Systems'
+  ml: 'Artificial Neural Network',
+  gamedev: 'Game Development',
+  web: 'Web Development',
+  desktop: 'Software Development',
+  design: 'User Interface Design',
+  security: 'Cyber Security'
+};
+
+const FIELD_DESCRIPTIONS = {
+  ml: 'Diving into deep theory playground. This section tracks my independent research into artificial neural networks, alternative architectures like predictive coding, and emergent behaviors.',
+  gamedev: 'Projects built purely for creative exploration and mechanical practice. This is where I experiment with game loops, physics, and building assets entirely from scratch.',
+  web: 'Core applications developed as part of my academic curriculum and hackathons, focusing on full-stack functionality, database handling, and real-world utility.',
+  desktop: 'Systems and desktop applications built to fulfill curriculum requirements, focusing on software engineering fundamentals, local storage, and practical CRUD operations.',
+  design: 'Design systems and interface layouts aligned with my academic coursework, emphasizing visual layout structure and prototyping.',
+  security: 'Extracurricular skill-honing. This logs my progress through hands-on labs and CTF challenges to build sharp defensive and analytical cybersecurity skills.'
 };
 
 const PROJECTS = [
@@ -248,25 +257,28 @@ function openModalDetails(node) {
   body.innerHTML = '';
 
   if (node.isField) {
-
     const relevant = PROJECTS.filter(p => p.field === node.key);
 
+    // Fetch custom copy or use a generic fallback if the key doesn't exist
+    const customIntro = FIELD_DESCRIPTIONS[node.key] || 'Explore the expanded mapping linkages belonging to this track directly on your network tree workspace:';
+
     body.innerHTML = `
-      <p class="modal-preheading">CORE ACADEMIC DISCIPLINE</p>
-      <h2 class="modal-heading">${node.label}</h2>
-      <div class="modal-description">
-        <p style="margin-bottom:1.25rem;">Explore the expanded mapping linkages belonging to this track directly on your network tree workspace:</p>
-        <ul style="padding-left:1.25rem; color:var(--text-muted); list-style-type: square;">
-          ${relevant.map(p => `
-            <li style="margin-bottom:0.75rem;">
-              <strong style="color:#ffffff; font-weight:600;">${p.name}:</strong> 
-              <span style="display:block; margin-top:0.15rem; font-size:0.9rem;">${p.desc}</span>
-            </li>
-          `).join('')}
-        </ul>
-      </div>
-      <div class="modal-tags-group"></div>
-    `;
+    <p class="modal-preheading">Field Description</p>
+    <h2 class="modal-heading">${node.label}</h2>
+    <div class="modal-description">
+      <p style="margin-bottom:1.25rem;">${customIntro}</p>
+      <ul style="padding-left:1.25rem; color:var(--text-muted); list-style-type: square;">
+        ${relevant.map(p => `
+          <li style="margin-bottom:0.75rem;">
+            <strong style="color:#ffffff; font-weight:600;">${p.name}:</strong> 
+            <span style="display:block; margin-top:0.15rem; font-size:0.9rem;">${p.desc}</span>
+          </li>
+        `).join('')}
+      </ul>
+    </div>
+    <div class="modal-tags-group"></div>
+  `;
+
   } else {
     const mediaHTML = (node.videoUrl && node.videoUrl.trim() !== '')
       ? `<div class="modal-media-placeholder">
