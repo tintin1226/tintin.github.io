@@ -141,7 +141,7 @@ function buildLayout() {
       const angle = (baseAngle - spreadAngleRange / 2) + (fraction * spreadAngleRange);
 
       const baseDist = isMobile ? 48 : 90;
-      const dist = baseDist + (p.size || 20) + (seededRandom(p.id + 42) * (isMobile ? 20 : 55));
+      const dist = baseDist + (p.size || 20) + (seededRandom(p.id + 42) * (isMobile ? 10 : 45));
 
       const node = {
         ...p,
